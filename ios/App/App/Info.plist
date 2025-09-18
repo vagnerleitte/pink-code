@@ -42,8 +42,11 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<!-- Camera permission for barcode scanning -->
+	<key>NSCameraUsageDescription</key>
+	<string>We need camera access to scan barcodes and QR codes.</string>
 </dict>
 </plist>
