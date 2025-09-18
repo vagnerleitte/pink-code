@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
@@ -43,7 +43,10 @@ export class ScanPage {
   lastResult: string | null = null;
   saving = false;
 
-  constructor(private qr: Qr, private store: Storage) {
+  private qr = inject(Qr);
+  private store = inject(Storage);
+
+  constructor() {
     addIcons({ camera, close, checkmark, copy, time, trash });
   }
 
