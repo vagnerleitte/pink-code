@@ -1,46 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Scan</ion-title>
+    <ion-title>Scanner</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="settings" size="large" style="padding: 8px"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Scan</ion-title>
-    </ion-toolbar>
   </ion-header>
 
-  <div style="padding:16px">
-    <ion-button expand="block" color="primary" (click)="start()" [disabled]="isScanning">
-      <ion-icon slot="start" name="camera"></ion-icon>
-      {{ isScanning ? 'Scanning…' : 'Start Scan' }}
-    </ion-button>
+<ion-content [fullscreen]="true" class="scanner-content">
+  <!-- Overlay central com moldura tracejada -->
+  <div class="scan-overlay">
+    <div class="scan-window"></div>
+  </div>
 
-    <ion-button expand="block" color="medium" fill="outline" (click)="cancel()" [disabled]="!isScanning" style="margin-top:8px">
-      <ion-icon slot="start" name="close"></ion-icon>
-      Cancel
-    </ion-button>
+  <!-- FAB central -->
+  <ion-fab vertical="bottom" horizontal="center" class="scan-fab">
+    <ion-fab-button color="primary">
+      <ion-icon name="scan"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-    <ion-card *ngIf="lastResult" style="margin-top:16px">
-      <ion-card-header>
-        <ion-card-title>Last result</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div style="word-break:break-word">{{ lastResult }}</div>
-        <div style="display:flex; gap:8px; margin-top:12px">
-          <ion-button size="small" (click)="copyToClipboard(lastResult!)">
-            <ion-icon slot="start" name="copy"></ion-icon>
-            Copy
-          </ion-button>
-          <a [href]="lastResult" target="_blank" rel="noopener" *ngIf="lastResult?.startsWith('http')">
-            <ion-button size="small" color="success">
-              <ion-icon slot="start" name="checkmark"></ion-icon>
-              Open Link
-            </ion-button>
-          </a>
-        </div>
-      </ion-card-content>
-    </ion-card>
+  <!-- Barra de ações inferior -->
+  <div class="action-bar">
+    <div class="action-item">
+      <div class="icon-circle"><ion-icon name="images"></ion-icon></div>
+      <div class="label">Gallery</div>
+    </div>
+    <div class="action-item">
+      <div class="icon-circle"><ion-icon name="flash"></ion-icon></div>
+      <div class="label">Flash</div>
+    </div>
+    <div class="action-item">
+      <div class="icon-circle"><ion-icon name="create"></ion-icon></div>
+      <div class="label">Create</div>
+    </div>
+    <div class="action-item">
+      <div class="icon-circle"><ion-icon name="time"></ion-icon></div>
+      <div class="label">History</div>
+    </div>
   </div>
 </ion-content>

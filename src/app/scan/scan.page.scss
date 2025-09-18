@@ -1,0 +1,73 @@
+:host {
+  --overlay-padding: 32px;
+}
+
+.scanner-content {
+  position: relative;
+  --background: transparent; /* permite ver a câmera por trás quando ativarmos */
+  padding-bottom: 140px; /* espaço para action bar + fab */
+}
+
+.scan-overlay {
+  display: grid;
+  place-items: center;
+  height: calc(100% - 160px);
+  padding: var(--overlay-padding);
+}
+
+.scan-window {
+  width: 75vw;
+  height: 55vw;
+  max-width: 480px;
+  max-height: 360px;
+  border-radius: 24px;
+  border: 3px dashed var(--scan-outline);
+}
+
+.scan-fab {
+  --box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  ion-fab-button {
+    width: 68px;
+    height: 68px;
+    --border-radius: 50%;
+    ion-icon { font-size: 28px; }
+  }
+}
+
+.action-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 20px calc(16px + env(safe-area-inset-bottom));
+  background: var(--surface);
+  box-shadow: var(--elevation-1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--ion-text-color);
+}
+
+.icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  display: grid;
+  place-items: center;
+  ion-icon { font-size: 24px; opacity: .9; }
+}
+
+.label {
+  font-size: 12px;
+  opacity: .8;
+}
