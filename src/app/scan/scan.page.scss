@@ -13,6 +13,7 @@
   place-items: center;
   height: calc(100% - 160px);
   padding: var(--overlay-padding);
+  position: relative;
 }
 
 .scan-window {
@@ -22,6 +23,15 @@
   max-height: 360px;
   border-radius: 24px;
   border: 3px dashed var(--scan-outline);
+}
+
+.scan-watermark {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  opacity: .12; /* sutil, como no mock */
+  filter: drop-shadow(0 20px 60px rgba(0,0,0,.35));
 }
 
 .scan-fab {
