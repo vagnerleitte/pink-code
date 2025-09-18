@@ -6,7 +6,17 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
+  IonButton,
+  IonIcon,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { camera, close, checkmark, copy, time, trash } from 'ionicons/icons';
+import { Qr } from '../services/qr';
+import { Storage, ScanEntry } from '../services/storage';
 
 @Component({
   selector: 'app-scan',
@@ -18,10 +28,54 @@ import {
     IonHeader,
     IonTitle,
     IonToolbar,
+    IonButton,
+    IonIcon,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
     CommonModule,
     FormsModule,
   ],
 })
 export class ScanPage {
-  constructor() {}
+  isScanning = false;
+  lastResult: string | null = null;
+  saving = false;
+
+  constructor(private qr: Qr, private store: Storage) {
+    addIcons({ camera, close, checkmark, copy, time, trash });
+  }
+
+  async start() {
+    this.isScanning = true;
+    this.lastResult = null;
+    try {
+      const content = await this.qr.startScan();
+      if (content) {
+        this.lastResult = content;
+        await this.save(content);
+      }
+    } finally {
+      this.isScanning = false;
+    }
+  }
+
+  async cancel() {
+    await this.qr.stopScan();
+    this.isScanning = false;
+  }
+
+  async save(content: string) {
+    this.saving = true;
+    try {
+      await this.store.addEntry(content);
+    } finally {
+      this.saving = false;
+    }
+  }
+
+  copyToClipboard(text: string) {
+    if (navigator?.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+  }
 }
