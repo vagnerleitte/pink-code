@@ -1,13 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tabs</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="scan" href="/tabs/scan">
+      <ion-icon name="scan-outline"></ion-icon>
+      <ion-label>Scan</ion-label>
+    </ion-tab-button>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tabs</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+    <ion-tab-button tab="history" href="/tabs/history">
+      <ion-icon name="time-outline"></ion-icon>
+      <ion-label>History</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="settings" href="/tabs/settings">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>Settings</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

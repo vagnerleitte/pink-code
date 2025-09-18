@@ -6,6 +6,11 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
+  IonTabs,
+  IonTabBar,
+  IonTabButton,
+  IonIcon,
+  IonLabel,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -16,8 +21,11 @@ import {
   imports: [
     IonContent,
     IonHeader,
-    IonTitle,
-    IonToolbar,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonLabel,
     CommonModule,
     FormsModule,
   ],
