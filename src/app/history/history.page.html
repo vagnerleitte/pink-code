@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">History</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style="padding:16px">
+    <ion-button color="danger" fill="outline" (click)="clear()" [disabled]="!items.length">
+      <ion-icon slot="start" name="trash"></ion-icon>
+      Clear history
+    </ion-button>
+  </div>
+
+  <ion-list *ngIf="items.length; else empty">
+    <ion-item *ngFor="let i of items">
+      <ion-label>
+        <h3 style="word-break:break-word">{{ i.content }}</h3>
+        <p>
+          <ion-icon name="time"></ion-icon>
+          {{ i.timestamp | date:'short' }}
+        </p>
+      </ion-label>
+      <ion-button slot="end" size="small" (click)="copy(i.content)">
+        <ion-icon name="copy"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #empty>
+    <div style="padding:16px; opacity:0.7">No items yet.</div>
+  </ng-template>
+</ion-content>

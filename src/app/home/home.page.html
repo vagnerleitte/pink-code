@@ -14,7 +14,15 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div style="display:flex; flex-direction:column; gap:12px; padding:16px">
+      <ion-button routerLink="/scan" expand="block">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Scan Barcode/QR
+      </ion-button>
+      <ion-button routerLink="/history" expand="block" color="medium" fill="outline">
+        <ion-icon slot="start" name="list"></ion-icon>
+        View History
+      </ion-button>
+    </div>
   </div>
 </ion-content>
