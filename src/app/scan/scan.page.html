@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Scanner</ion-title>
     <ion-buttons slot="end">
-      <ion-icon name="settings" size="large" style="padding: 8px"></ion-icon>
+      <ion-icon name="settings" size="large" style="padding: 8px" (click)="goSettings()"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
   </ion-header>
@@ -24,15 +24,15 @@
 
   <!-- Barra de ações inferior -->
   <div class="action-bar">
-    <div class="action-item" (click)="/* TODO: abrir galeria */ null">
+    <div class="action-item" (click)="openGallery()">
       <div class="icon-circle"><ion-icon name="images"></ion-icon></div>
       <div class="label">Gallery</div>
     </div>
-    <div class="action-item" (click)="/* TODO: flash */ null">
+    <div class="action-item" (click)="toggleFlash()">
       <div class="icon-circle"><ion-icon name="flash"></ion-icon></div>
       <div class="label">Flash</div>
     </div>
-    <div class="action-item" (click)="/* TODO: criar QR */ null">
+    <div class="action-item" (click)="createCode()">
       <div class="icon-circle"><ion-icon name="create"></ion-icon></div>
       <div class="label">Create</div>
     </div>

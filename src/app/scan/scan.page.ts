@@ -74,4 +74,23 @@ export class ScanPage {
   goHistory() {
     this.router.navigateByUrl('/history');
   }
+
+  goSettings() {
+    this.router.navigateByUrl('/settings');
+  }
+
+  openGallery() {
+    // Placeholder da POC: futura leitura por imagem/galeria
+    console.log('openGallery: not implemented in POC');
+  }
+
+  toggleFlash() {
+    // Placeholder da POC: avaliar suporte do plugin/alternativas
+    console.log('toggleFlash: not implemented in POC');
+  }
+
+  createCode() {
+    // Placeholder da POC: futura tela de criação de QR
+    console.log('createCode: not implemented in POC');
+  }
 }
