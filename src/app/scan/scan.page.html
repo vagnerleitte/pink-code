@@ -17,26 +17,26 @@
 
   <!-- FAB central -->
   <ion-fab vertical="bottom" horizontal="center" class="scan-fab">
-    <ion-fab-button color="primary">
-      <ion-icon name="scan"></ion-icon>
+    <ion-fab-button color="primary" (click)="onFabClick()">
+      <ion-icon [name]="isScanning ? 'close' : 'scan'"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <!-- Barra de ações inferior -->
   <div class="action-bar">
-    <div class="action-item">
+    <div class="action-item" (click)="/* TODO: abrir galeria */ null">
       <div class="icon-circle"><ion-icon name="images"></ion-icon></div>
       <div class="label">Gallery</div>
     </div>
-    <div class="action-item">
+    <div class="action-item" (click)="/* TODO: flash */ null">
       <div class="icon-circle"><ion-icon name="flash"></ion-icon></div>
       <div class="label">Flash</div>
     </div>
-    <div class="action-item">
+    <div class="action-item" (click)="/* TODO: criar QR */ null">
       <div class="icon-circle"><ion-icon name="create"></ion-icon></div>
       <div class="label">Create</div>
     </div>
-    <div class="action-item">
+    <div class="action-item" (click)="goHistory()">
       <div class="icon-circle"><ion-icon name="time"></ion-icon></div>
       <div class="label">History</div>
     </div>
