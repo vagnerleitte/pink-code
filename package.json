@@ -11,7 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "splash:apply": "node scripts/apply-splash.mjs",
-    "native:sync": "npx cap sync"
+    "native:sync": "npx cap sync",
+    "postinstall": "node scripts/patch-cap-ios.mjs"
   },
   "private": true,
   "dependencies": {
