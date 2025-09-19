@@ -11,8 +11,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <div style="padding:16px">
-    <ion-button color="danger" fill="outline" (click)="clear()" [disabled]="!items.length">
+  <div style="padding: 16px">
+    <ion-button
+      color="danger"
+      fill="outline"
+      (click)="clear()"
+      [disabled]="!items.length"
+    >
       <ion-icon slot="start" name="trash"></ion-icon>
       Clear history
     </ion-button>
@@ -20,8 +25,9 @@
 
   <ion-list *ngIf="items.length; else empty">
     <ion-item *ngFor="let i of items">
-      <ion-label>
-        <h3 style="word-break:break-word">{{ i.content }}</h3>
+      <ion-label
+        >`
+        <h3 style="word-break: break-word">{{ i.content }}</h3>
         <p>
           <ion-icon name="time"></ion-icon>
           {{ i.timestamp | date:'short' }}
@@ -34,6 +40,6 @@
   </ion-list>
 
   <ng-template #empty>
-    <div style="padding:16px; opacity:0.7">No items yet.</div>
+    <div style="padding: 16px; opacity: 0.7">No items yet.</div>
   </ng-template>
 </ion-content>
