@@ -2,11 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
+  IonIcon,
+  IonLabel,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
 } from '@ionic/angular/standalone';
+
+import { addIcons } from 'ionicons';
+
+import { settingsOutline, refreshOutline, qrCodeOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-tabs',
@@ -14,14 +19,21 @@ import {
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonLabel,
     CommonModule,
     FormsModule,
   ],
 })
 export class TabsPage {
-  constructor() {}
+  constructor() {
+    addIcons({
+      settingsOutline,
+      refreshOutline,
+      qrCodeOutline,
+    });
+  }
 }

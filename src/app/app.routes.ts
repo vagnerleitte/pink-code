@@ -2,12 +2,8 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'history',
     pathMatch: 'full',
   },
   {
@@ -27,5 +23,10 @@ export const routes: Routes = [
     path: 'settings',
     loadComponent: () =>
       import('./settings/settings.page').then((m) => m.SettingsPage),
+  },
+  {
+    path: '*',
+    loadComponent: () =>
+      import('./error/not-found/not-found.page').then((m) => m.NotFoundPage),
   },
 ];

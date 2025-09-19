@@ -6,17 +6,16 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonButton,
   IonIcon,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
+  IonButtons,
+  IonFab,
+  IonFabButton,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { camera, close, checkmark, copy, time, trash } from 'ionicons/icons';
+import { settings, scan, images, flash, create, time, close } from 'ionicons/icons';
 import { Qr } from '../services/qr';
-import { Storage, ScanEntry } from '../services/storage';
+import { Storage } from '../services/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scan',
@@ -28,26 +27,29 @@ import { Storage, ScanEntry } from '../services/storage';
     IonHeader,
     IonTitle,
     IonToolbar,
-    IonButton,
     IonIcon,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
+    IonButtons,
+    IonFab,
+    IonFabButton,
     CommonModule,
     FormsModule,
   ],
 })
 export class ScanPage {
-  isScanning = false;
-  lastResult: string | null = null;
-  saving = false;
-
   private qr = inject(Qr);
   private store = inject(Storage);
+  private router = inject(Router);
+
+  isScanning = false;
+  lastResult: string | null = null;
 
   constructor() {
-    addIcons({ camera, close, checkmark, copy, time, trash });
+    addIcons({ settings, scan, images, flash, create, time, close });
+  }
+
+  async onFabClick() {
+    if (this.isScanning) return this.cancel();
+    await this.start();
   }
 
   async start() {
@@ -57,7 +59,7 @@ export class ScanPage {
       const content = await this.qr.startScan();
       if (content) {
         this.lastResult = content;
-        await this.save(content);
+        await this.store.addEntry(content);
       }
     } finally {
       this.isScanning = false;
@@ -69,16 +71,26 @@ export class ScanPage {
     this.isScanning = false;
   }
 
-  async save(content: string) {
-    this.saving = true;
-    try {
-      await this.store.addEntry(content);
-    } finally {
-      this.saving = false;
-    }
+  goHistory() {
+    this.router.navigateByUrl('/history');
   }
 
-  copyToClipboard(text: string) {
-    if (navigator?.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+  goSettings() {
+    this.router.navigateByUrl('/settings');
+  }
+
+  openGallery() {
+    // Placeholder da POC: futura leitura por imagem/galeria
+    console.log('openGallery: not implemented in POC');
+  }
+
+  toggleFlash() {
+    // Placeholder da POC: avaliar suporte do plugin/alternativas
+    console.log('toggleFlash: not implemented in POC');
+  }
+
+  createCode() {
+    // Placeholder da POC: futura tela de criação de QR
+    console.log('createCode: not implemented in POC');
   }
 }

@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Blank </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,12 +12,19 @@
   </ion-header>
 
   <div id="container">
-    <div style="display:flex; flex-direction:column; gap:12px; padding:16px">
+    <div
+      style="display: flex; flex-direction: column; gap: 12px; padding: 16px"
+    >
       <ion-button routerLink="/scan" expand="block">
         <ion-icon slot="start" name="camera"></ion-icon>
         Scan Barcode/QR
       </ion-button>
-      <ion-button routerLink="/history" expand="block" color="medium" fill="outline">
+      <ion-button
+        routerLink="/history"
+        expand="block"
+        color="medium"
+        fill="outline"
+      >
         <ion-icon slot="start" name="list"></ion-icon>
         View History
       </ion-button>

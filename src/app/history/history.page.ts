@@ -1,69 +1,69 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
 import {
-  IonContent,
+  IonButton,
   IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonList,
+  IonIcon,
   IonItem,
   IonLabel,
-  IonButton,
-  IonIcon,
+  IonList,
+  IonToolbar,
+  IonContent,
+  IonTitle,
+  ViewWillEnter,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { trash, copy, time } from 'ionicons/icons';
-import { Storage, ScanEntry } from '../services/storage';
+import { StorageService } from '../services/storage.service';
 
 @Component({
+  standalone: true,
   selector: 'app-history',
   templateUrl: './history.page.html',
-  styleUrls: ['./history.page.scss'],
-  standalone: true,
+
   imports: [
-    IonContent,
     IonHeader,
-    IonTitle,
-    IonToolbar,
+    IonIcon,
+    IonButton,
     IonList,
+    IonToolbar,
     IonItem,
     IonLabel,
-    IonButton,
-    IonIcon,
+    IonTitle,
+    IonContent,
     CommonModule,
-    FormsModule,
   ],
 })
-export class HistoryPage implements OnInit {
-  items: ScanEntry[] = [];
-  loading = false;
+export class HistoryPage implements ViewWillEnter {
+  list = signal<Record<string, string[]>>({}); // group by section
+  items: any = [];
 
-  private store = inject(Storage);
-
-  constructor() {
-    addIcons({ trash, copy, time });
-  }
-
-  ngOnInit(): void {
+  constructor(private store: StorageService) {}
+  ionViewWillEnter(): void {
     this.load();
   }
-
   async load() {
-    this.loading = true;
-    try {
-      this.items = await this.store.getHistory();
-    } finally {
-      this.loading = false;
-    }
+    this.items = (await this.store.all()) || [];
+    const sections: Record<string, string[]> = {};
+    const today = new Date().toDateString();
+    const yesterday = new Date(Date.now() - 864e5).toDateString();
+
+    this.items.forEach((code: string | number | Date) => {
+      const key =
+        new Date(code).toDateString() === today
+          ? 'Today'
+          : new Date(code).toDateString() === yesterday
+          ? 'Yesterday'
+          : 'Last 7 Days';
+      sections[key] ??= [];
+      sections[key].push(code as unknown as string);
+    });
+    this.list.set(sections);
   }
 
-  async clear() {
-    await this.store.clearHistory();
-    await this.load();
+  clear() {
+    console.log(`clear`);
   }
 
-  copy(text: string) {
-    if (navigator?.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+  copy(content: string) {
+    console.log(`copied`);
   }
 }
