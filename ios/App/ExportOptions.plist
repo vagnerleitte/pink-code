@@ -3,12 +3,12 @@
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>method</key><string>ad-hoc</string> <!-- app-store, ad-hoc, enterprise, development -->
-  <key>signingStyle</key><string>manual</string>
-  <key>provisioningProfiles</key>
-  <dict>
-    <key>com.vagner.pinkcode</key><string>PINKCODE_AdHoc</string>
-  </dict>
-  <key>teamID</key><string>ABCDE12345</string>
+  <key>method</key>
+  <string>development</string>
+  <key>compileBitcode</key>
+  <false/>
+  <key>signingStyle</key>
+  <string>automatic</string>
 </dict>
 </plist>
+
